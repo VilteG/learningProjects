@@ -1,0 +1,21 @@
+body {
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#fff;
+    font-size:2rem;
+}
+
+#intro {
+    background: rgb(27, 27, 63);
+    opacity:0.5;
+    padding: 1rem;
+    position:absolute;
+    top:50px;
+    left:50px;
+} 
+
+
+#particles-js{
+    background: rgb(27, 27, 63);
+    height:50vh;
+}
