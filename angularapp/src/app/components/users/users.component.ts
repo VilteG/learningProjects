@@ -9,9 +9,19 @@ import { User } from '../../models/User';
 })
 export class UsersComponent implements OnInit {
   // properties
+  user: User = {
+    firstName:'',
+    lastName:'',
+    age:null,
+    adress:{
+      street:'',
+      city:''
+    }
+  }
   users: User[]; // brackets: its gonna be array of users
   showExtended: boolean = true;
-  enabeledAdd:boolean = true;
+  enabeledAdd:boolean = false;
+  showUserForm:boolean = false;
   //currentClasses = {};
   //currentStyles={};
 
@@ -76,10 +86,23 @@ export class UsersComponent implements OnInit {
 
     }
 
-    addUser(user:User){
-      this.users.push(user);
+    addUser(){
+      this.user.isActive=true;
+      this.user.registered = new Date();
+      this.users.unshift(this.user);
+
+      //clearing form after submitting
+      this.user = {
+        firstName:'',
+    lastName:'',
+    age:null,
+    adress:{
+      street:'',
+      city:''
+      }
   }
 
+  
   // toggleHide(user:User){
   //   user.hidden = !user.hidden;
   // }
