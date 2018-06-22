@@ -12,8 +12,8 @@ export class UsersComponent implements OnInit {
   users: User[]; // brackets: its gonna be array of users
   showExtended: boolean = true;
   enabeledAdd:boolean = true;
-  currentClasses = {};
-  currentStyles={};
+  //currentClasses = {};
+  //currentStyles={};
 
   constructor() { }
 
@@ -27,10 +27,11 @@ export class UsersComponent implements OnInit {
             street: 'Vilniaus',
             city: 'Kaunas'
         },
-        image:'http://lorempixel.com/600/600/people/3',
+        //image:'http://lorempixel.com/600/600/people/3',
         isActive:true,
-        balance:100,
-        registered: new Date('01/02/2018 08:30:00')
+        //balance:100,
+        registered: new Date('01/02/2018 08:30:00'),
+        hidden:true
     },
     
     {
@@ -41,9 +42,10 @@ export class UsersComponent implements OnInit {
           street: 'Gedimino',
           city: 'Kaunas'
       },
-      image:'http://lorempixel.com/600/600/people/2',
-      balance:200,
-      registered: new Date('02/15/2018 06:34:00')
+      //image:'http://lorempixel.com/600/600/people/2',
+      //balance:200,
+      registered: new Date('02/15/2018 06:34:00'),
+      hidden:true
   },
   
   {
@@ -54,22 +56,23 @@ export class UsersComponent implements OnInit {
         street: 'Putvinskio',
         city: 'Kaunas'
     },
-    image:'http://lorempixel.com/600/600/people/1'
+    //image:'http://lorempixel.com/600/600/people/1'
+    hidden:true
 }     
 
     ];   
 
     this.showExtended=true; // neberodys adreso ir kitos info
 
-    this.addUser(
-      {
-        firstName:'Jhon',
-        lastName: 'Smith'
-            }     
-    );
+    // this.addUser(
+    //   {
+    //     firstName:'Jhon',
+    //     lastName: 'Smith'
+    //         }     
+    // );
 
-    this.setCurrentClasses();
-    this.setCurrentStyles();
+   // this.setCurrentClasses();
+    //this.setCurrentStyles();
 
     }
 
@@ -77,18 +80,23 @@ export class UsersComponent implements OnInit {
       this.users.push(user);
   }
 
-  setCurrentClasses(){
-    this.currentClasses = {
-      'btn-sucess':this.enabeledAdd,
-      'big-text':this.showExtended
-    }
-  }
+  // toggleHide(user:User){
+  //   user.hidden = !user.hidden;
+  // }
+  
 
-  setCurrentStyles(){
-    this.currentStyles = {
-      'padding-top':this.showExtended ? '0':'40px'
-    }
+  // setCurrentClasses(){
+  //   this.currentClasses = {
+  //     'btn-sucess':this.enabeledAdd,
+  //     'big-text':this.showExtended
+  //   }
+  // }
 
-  }
+  // setCurrentStyles(){
+  //   this.currentStyles = {
+  //     'padding-top':this.showExtended ? '0':'40px'
+  //   }
+
+ // }
 
 }
