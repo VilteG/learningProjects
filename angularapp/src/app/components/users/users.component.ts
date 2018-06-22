@@ -12,11 +12,7 @@ export class UsersComponent implements OnInit {
   user: User = {
     firstName:'',
     lastName:'',
-    age:null,
-    adress:{
-      street:'',
-      city:''
-    }
+    email:''
   }
   users: User[]; // brackets: its gonna be array of users
   showExtended: boolean = true;
@@ -32,11 +28,7 @@ export class UsersComponent implements OnInit {
       {
         firstName:'Victoria',
         lastName: 'Baumhart',
-        age: 22,
-        adress: {
-            street: 'Vilniaus',
-            city: 'Kaunas'
-        },
+        email:'victoria@gmail.com',
         //image:'http://lorempixel.com/600/600/people/3',
         isActive:true,
         //balance:100,
@@ -47,11 +39,7 @@ export class UsersComponent implements OnInit {
     {
       firstName:'Jhon',
       lastName: 'Doe',
-      age: 30,
-      adress: {
-          street: 'Gedimino',
-          city: 'Kaunas'
-      },
+      email:'jhon@yahoo.com',
       //image:'http://lorempixel.com/600/600/people/2',
       //balance:200,
       registered: new Date('02/15/2018 06:34:00'),
@@ -61,11 +49,7 @@ export class UsersComponent implements OnInit {
   {
     firstName:'Steve',
     lastName: 'Malone',
-    age: 30,
-    adress: {
-        street: 'Putvinskio',
-        city: 'Kaunas'
-    },
+    email:'steve@gmail.com',
     //image:'http://lorempixel.com/600/600/people/1'
     hidden:true
 }     
@@ -86,21 +70,17 @@ export class UsersComponent implements OnInit {
 
     }
 
-    addUser(){
-      this.user.isActive=true;
-      this.user.registered = new Date();
-      this.users.unshift(this.user);
+  //   addUser(){
+  //     this.user.isActive=true;
+  //     this.user.registered = new Date();
+  //     this.users.unshift(this.user);
 
-      //clearing form after submitting
-      this.user = {
-        firstName:'',
-    lastName:'',
-    age:null,
-    adress:{
-      street:'',
-      city:''
-      }
-  }
+  //     //clearing form after submitting
+  //     this.user = {
+  //       firstName:'',
+  //   lastName:'',
+  //   email:''
+  // }
 
   
   // toggleHide(user:User){
