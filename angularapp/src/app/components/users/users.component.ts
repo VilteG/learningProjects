@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/User';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -18,46 +19,19 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   enabeledAdd:boolean = false;
   showUserForm:boolean = false;
+  @ViewChild('userForm') form:any;
   //currentClasses = {};
   //currentStyles={};
 
-  constructor() { }
+  constructor(private dataService : DataService) { }
 
   ngOnInit() {
-    this.users = [
-      {
-        firstName:'Victoria',
-        lastName: 'Baumhart',
-        email:'victoria@gmail.com',
-        //image:'http://lorempixel.com/600/600/people/3',
-        isActive:true,
-        //balance:100,
-        registered: new Date('01/02/2018 08:30:00'),
-        hidden:true
-    },
     
-    {
-      firstName:'Jhon',
-      lastName: 'Doe',
-      email:'jhon@yahoo.com',
-      //image:'http://lorempixel.com/600/600/people/2',
-      //balance:200,
-      registered: new Date('02/15/2018 06:34:00'),
-      hidden:true
-  },
-  
-  {
-    firstName:'Steve',
-    lastName: 'Malone',
-    email:'steve@gmail.com',
-    //image:'http://lorempixel.com/600/600/people/1'
-    hidden:true
-}     
-
-    ];   
+    this.users = this.dataService.getUsers();
 
     this.showExtended=true; // neberodys adreso ir kitos info
 
+   
     // this.addUser(
     //   {
     //     firstName:'Jhon',
@@ -69,6 +43,21 @@ export class UsersComponent implements OnInit {
     //this.setCurrentStyles();
 
     }
+
+    onSubmit({value, valid}:{value:User, valid:boolean}) {
+      if(!valid){
+        console.log('form is not valid');
+       }else{
+        value.isActive = true;
+        value.registered = new Date();
+        value.hidden = true;
+  
+        this.dataService.addUser(value);
+  
+        this.form.reset();
+       }
+  }
+
 
   //   addUser(){
   //     this.user.isActive=true;
