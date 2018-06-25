@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/User';
-import { DataService } from '../../services/data.service';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -20,14 +20,21 @@ export class UsersComponent implements OnInit {
   enabeledAdd:boolean = false;
   showUserForm:boolean = false;
   @ViewChild('userForm') form:any;
+  data:any;
   //currentClasses = {};
   //currentStyles={};
 
-  constructor(private dataService : DataService) { }
+  constructor(private userService : UserService) { }
 
   ngOnInit() {
+
+    this.userService.getData().subscribe(data => {
+        console.log(data);
+    });
     
-    this.users = this.dataService.getUsers();
+    this.userService.getUsers().subscribe(users =>{
+      this.users = users;
+    });
 
     this.showExtended=true; // neberodys adreso ir kitos info
 
@@ -52,7 +59,7 @@ export class UsersComponent implements OnInit {
         value.registered = new Date();
         value.hidden = true;
   
-        this.dataService.addUser(value);
+        this.userService.addUser(value);
   
         this.form.reset();
        }
