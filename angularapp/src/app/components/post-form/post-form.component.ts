@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Post } from  '../../models/Post';
 
 import { PostService} from '../../services/post.service';
@@ -11,10 +11,11 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class PostFormComponent implements OnInit {
 
-  constructor(private postService:PostService) { }
-
-  post:Post;
+  constructor(private postService:PostService) { }  
   @Output() newPost:EventEmitter<Post> = new EventEmitter();
+  @Output() updatedPost:EventEmitter<Post> = new EventEmitter();
+  @Input() currentPost:Post; // property of the form component
+  @Input() isEdit:boolean;
 
   ngOnInit() {
   }
@@ -28,6 +29,16 @@ export class PostFormComponent implements OnInit {
         this.newPost.emit(post);
       })
     }
+  }
+
+  updatePost(){
+    this.postService.updatePost(this.currentPost).subscribe(
+      post=> {
+        console.log(post);
+        this.isEdit=false;
+        this.updatedPost.emit(post);
+      }
+    );
   }
 
   
