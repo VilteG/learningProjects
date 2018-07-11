@@ -21,7 +21,14 @@ stateClear = this.stateSource.asObservable();
    }
 
    getLogs(): Observable<Log[]>{
-     return of(this.logs);
+     if(localStorage.getItem('logs')=== null){
+       this.logs = [];
+     }else{
+      this.logs = JSON.parse(localStorage.getItem('logs'));
+     }
+     return of(this.logs.sort((a,b)=>{
+      return b.date = a.date;
+     }));
    }
 
    setFormLog(log: Log){
@@ -30,6 +37,8 @@ stateClear = this.stateSource.asObservable();
 
    addLog(log: Log){
      this.logs.unshift(log);
+     // Add to local storage
+     localStorage.setItem('logs', JSON.stringify(this.logs));
    }
 
    updateLog(log: Log) {
@@ -39,6 +48,8 @@ stateClear = this.stateSource.asObservable();
         }
      });
      this.logs.unshift(log);
+      // Update local storage
+      localStorage.setItem('logs', JSON.stringify(this.logs));
    }
 
    deleteLog(log: Log){
@@ -47,7 +58,8 @@ stateClear = this.stateSource.asObservable();
         this.logs.splice(index,1)
       }
    });
-
+    // Delete from local storage
+    localStorage.setItem('logs', JSON.stringify(this.logs));
    }
 
    clearState(){
